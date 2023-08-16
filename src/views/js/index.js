@@ -3,16 +3,22 @@ const editor = new EditorJS({
     data: {},
     readOnly: false,
     placeholder: '',
-
+    onChange : () => {
+        editor.save().then((outputData) => {
+            parseToHTML(outputData)
+        })
+    },
     onReady: () => {
         new Undo({
             editor
         });
+        new DragDrop(editor);
     },
     tools: {
         paragraph: {
             class: Paragraph,
             inlineToolbar: true,
+            
         },
         checklist: Checklist,
         list: {
@@ -22,12 +28,13 @@ const editor = new EditorJS({
                 defaultStyle: 'unordered'
             },
         },
-        linkTool: {
-            class: LinkTool,
+        hyperlink: {
+            class: Hyperlink,
             config: {
-                endpoint: 'http://localhost:8008/fetchUrl', // Your backend endpoint for url data fetching,
+              shortcut: 'CMD+SHIFT+L',
+              validate: true,
             }
-        },
+          },
         quote: {
             class: Quote,
             inlineToolbar: true,
@@ -54,10 +61,18 @@ const editor = new EditorJS({
         image: SimpleImage,
         table: {
             class: Table,
+            inlineToolbar: true,
         },
+        embed: Embed,
         AnyButton: {
             class: AnyButton,
             inlineToolbar: false,
         },
     }
 })
+
+const edjsParser = edjsHTML()
+
+function parseToHTML(data) {
+    console.log(edjsParser.parse(data))
+}
