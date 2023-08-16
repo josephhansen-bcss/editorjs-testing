@@ -21,6 +21,7 @@ const editor = new EditorJS({
         checklist: Checklist,
         list: {
             class: NestedList,
+            shortcut: 'CMD+SHIFT+8',
             inlineToolbar: true,
             config: {
                 defaultStyle: 'unordered'
@@ -28,8 +29,8 @@ const editor = new EditorJS({
         },
         hyperlink: {
             class: Hyperlink,
+            shortcut: 'CMD+SHIFT+L',
             config: {
-              shortcut: 'CMD+SHIFT+L',
               validate: true,
             }
           },
@@ -54,6 +55,7 @@ const editor = new EditorJS({
         },
         toggle: {
             class: ToggleBlock,
+            shortcut: 'CMD+SHIFT+Y',
             inlineToolbar: true,
         },
         image: SimpleImage,
@@ -65,6 +67,7 @@ const editor = new EditorJS({
         AnyButton: {
             class: AnyButton,
             inlineToolbar: false,
+            shortcut: 'CMD+J',
         },
     }
 })

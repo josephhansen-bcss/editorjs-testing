@@ -1,16 +1,22 @@
 import express from 'express'
 const app = express()
+import nunjucks from 'nunjucks'
+
+nunjucks.configure(['src/views', 'src/includes', 'src/assets'] , {
+    autoescape: true,
+    express: app,
+    watch: true
+})
 
 app.get('/', (req, res) => {
-    res.sendFile("/src/views/index.html", { root: '.' })
+    res.render('index.html', { root: '.' })})
+
+app.get('/editor.js', (req, res) => {
+    res.sendFile("/src/views/js/editor.js", { root: '.' })
 })
 
-app.get('/.js', (req, res) => {
-    res.sendFile("/src/views/js/index.js", { root: '.' })
-})
-
-app.get('/.css', (req, res) => {
-    res.sendFile("/src/views/css/index.css", { root: '.' })
+app.get('/editor.css', (req, res) => {
+    res.sendFile("/src/views/css/editor.css", { root: '.' })
 })
 
 app.listen(5920, () => {
