@@ -1,0 +1,9 @@
+body {
+    padding: 2vw;
+}
+
+#editorjs{
+    border: solid 1px rgb(214, 214, 214);
+    border-radius: 4px;
+    padding: 2vw;
+}
