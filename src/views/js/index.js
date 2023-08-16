@@ -74,5 +74,7 @@ const editor = new EditorJS({
 const edjsParser = edjsHTML()
 
 function parseToHTML(data) {
-    console.log(edjsParser.parse(data))
+    let html = edjsParser.parse(data)
+    html = html.join('')
+    sessionStorage.setItem('current-blog-data', html)
 }
