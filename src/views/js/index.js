@@ -9,9 +9,7 @@ const editor = new EditorJS({
         })
     },
     onReady: () => {
-        new Undo({
-            editor
-        });
+        new Undo({editor});
         new DragDrop(editor);
     },
     tools: {
